@@ -30,3 +30,9 @@ $ npm start # run electron
 * styled component
 * webpack
 * electron
+
+## memo
+
+* https://www.typescriptlang.org/docs/handbook/react-&-webpack.html
+* https://qiita.com/uryyyyyyy/items/3ad88cf9ca9393335f8c
+* https://mae.chab.in/archives/59782
