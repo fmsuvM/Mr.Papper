@@ -13,6 +13,7 @@ function createWindow() {
 
     mainWindow.loadURL(`file://${__dirname}/build/index.html`);
     loadDevtool(loadDevtool.REACT_DEVELOPER_TOOLS);
+    loadDevtool(loadDevtool.REDUX_DEVTOOLS);
     // mainWindow.openDevTools();
 
     mainWindow.on('closed', function() {

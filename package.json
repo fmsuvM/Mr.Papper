@@ -23,10 +23,13 @@
     "homepage": "https://github.com/fmsuvM/Mr.Papper#readme",
     "dependencies": {
         "axios": "^0.18.0",
+        "babel-polyfill": "^6.26.0",
         "debug": "^3.1.0",
         "electron-is-dev": "^0.3.0",
+        "fs": "0.0.1-security",
         "history": "^4.7.2",
         "path": "^0.12.7",
+        "prop-types": "^15.6.1",
         "qs": "^6.5.1",
         "react": "^16.3.1",
         "react-dom": "^16.3.1",

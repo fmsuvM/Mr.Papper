@@ -1,22 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
+import 'rxjs';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import qs from 'qs';
+import Debug from 'debug';
 
-const Title = styled.h1`
-    font-size: 1.5em;
-    text-align: center;
-    color: palevioletred;
-`;
+import reducers from './reducers/index';
+import epicsMiddleware from './middleware/index';
+import loader from './utils/PDFLoader';
 
-// Create a Wrapper component that'll render a <section> tag with some styles
-const Wrapper = styled.section`
-    padding: 4em;
-    background: papayawhip;
-`;
+import Home from './components/Home';
 
-ReactDOM.render(
-    <Wrapper>
-        <Title>First Commit</Title>
-    </Wrapper>,
-    document.getElementById('app')
-);
+const debug = Debug('Mr.Papper::App');
+const isDev = qs.parse(location.search.replace('?', ''))['isDev'] || false;
+debug(qs.parse(location.search.replace('?', ''))['isDev']);
+
+window.addEventListener('DOMContentLoaded', () => {
+    debug('=====> Mount App');
+    const composeEnhances = isDev ?
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose :
+        compose;
+    const store = createStore(
+        reducers,
+        composeEnhances(applyMiddleware(epicsMiddleware))
+    );
+    loader.init(store);
+    ReactDOM.render(
+        <Provider store={store}>
+            <div className="body">
+                <Home />
+            </div>
+        </Provider>,
+        document.getElementById('app')
+    );
+});
