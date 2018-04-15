@@ -11,14 +11,6 @@ module.exports = [
         devtool: 'source-map',
         module: {
             rules: [
-                // {
-                //     test: /\.js[x]?$/,
-                //     loader: 'babel-loader',
-                //     exclude: /node_modules/,
-                //     options: {
-                //         presets: ['react', 'es2015', 'es2017']
-                //     }
-                // }
                 {
                     test: /\.tsx?$/,
                     loader: 'awesome-typescript-loader',
@@ -29,10 +21,6 @@ module.exports = [
         },
         resolve: {
             extensions: ['.js', 'jsx', '.ts', '.tsx', 'json']
-        },
-        externals: {
-            'react-dom': 'ReactDOM',
-            'react': 'React'
         }
     }
 ];
