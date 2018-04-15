@@ -14,13 +14,11 @@ import Home from './components/Home';
 
 const debug = Debug('Mr.Papper::App');
 const isDev = qs.parse(location.search.replace('?', ''))['isDev'] || false;
-debug(qs.parse(location.search.replace('?', ''))['isDev']);
 
 window.addEventListener('DOMContentLoaded', () => {
     debug('=====> Mount App');
-    const composeEnhances = isDev ?
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose :
-        compose;
+    const composeEnhances =
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     const store = createStore(
         reducers,
         composeEnhances(applyMiddleware(epicsMiddleware))
