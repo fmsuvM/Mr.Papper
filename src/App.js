@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom';
 import 'rxjs';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import qs from 'qs';
 import Debug from 'debug';
 
 import reducers from './reducers/index';
 import epicsMiddleware from './middleware/index';
 import loader from './utils/PDFLoader';
+import { loadingData } from './actions/index';
 
-import Home from './components/Home';
+import Home from './pages/Home';
 
 const debug = Debug('Mr.Papper::App');
-const isDev = qs.parse(location.search.replace('?', ''))['isDev'] || false;
 
 window.addEventListener('DOMContentLoaded', () => {
     debug('=====> Mount App');
@@ -24,6 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
         composeEnhances(applyMiddleware(epicsMiddleware))
     );
     loader.init(store);
+    store.dispatch(loadingData('initialize'));
     ReactDOM.render(
         <Provider store={store}>
             <div className="body">

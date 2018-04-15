@@ -14,9 +14,13 @@ class Loader {
         this.store = store;
     }
 
-    async loadFolder() {
-        debug('load paper folder');
-        return 1;
+    async loadFolder(text) {
+        debug('load paper folder:', text);
+        return {
+            hoge: 'fuga',
+            fuga: 'hoge',
+            receive: text
+        };
     }
 }
 

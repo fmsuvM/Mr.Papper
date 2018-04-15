@@ -37,6 +37,7 @@ export default handleActions(
         },
         [RECEIVE_DATA]: (state, action) => {
             debug('received data:', state);
+            debug('action: ', action);
             return Object.assign({}, state, {
                 requestData: false,
                 isLoading: false
