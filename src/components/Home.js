@@ -36,7 +36,7 @@ class Home extends Component {
     }
 }
 
-Home.PropTypes = {};
+Home.propTypes = {};
 
 const mapStateToProps = state => ({
     requestData: state.requestData
