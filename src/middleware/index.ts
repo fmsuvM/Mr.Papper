@@ -1,5 +1,5 @@
 import { combineEpics, Epic, createEpicMiddleware } from 'redux-observable';
-// import * as Rx from 'rxjs';
+import * as Rx from 'rxjs';
 import * as Debug from 'debug';
 
 import loader from '../utils/PDFLoader';
