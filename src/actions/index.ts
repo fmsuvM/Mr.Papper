@@ -25,8 +25,12 @@ const receiveData = createAction<Action, Action>(
     (action: Action) => action
 );
 
-const testTrigger = createAction<void>(TEST_TRIGGER, () => {});
+// const testTrigger = createAction<void>(TEST_TRIGGER, () => {});
 
+const testTrigger = createAction<Action, Action>(
+    TEST_TRIGGER,
+    (action: Action) => action
+);
 export { requestData, loadingData, receiveData, testTrigger };
 
 // export const receiveData = createAction(RECEIVE_DATA, data => {
