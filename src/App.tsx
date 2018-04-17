@@ -3,28 +3,30 @@ import * as ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose, Store } from 'redux';
 import { Provider } from 'react-redux';
 import * as Debug from 'debug';
+import 'rxjs';
 
 import reducers from './reducers/index';
-import epicsMiddleware from './middleware/index';
 import loader from './utils/PDFLoader';
 import { RootState } from './models/model';
+import rootMiddleware from './middleware/index';
 
-import Home from './components/Home';
+import { ConnectedHome } from './connected/ConnectedHome';
 
 const debug = Debug('Mr.Papper::App');
 
 window.addEventListener('DOMContentLoaded', () => {
     debug('=====> Mount App');
     const initialState = {};
-    const enhancer = window['devToolsExtension']
+    const enhancer: any = window['devToolsExtension']
         ? window['devToolsExtension']()(createStore)
         : createStore;
-    const store: Store<any> = enhancer(reducers, initialState);
+    const middleware = applyMiddleware(rootMiddleware);
+    const store: Store<any> = middleware(enhancer)(reducers, initialState);
     loader.init(store);
     ReactDOM.render(
         <Provider store={store}>
             <div className="body">
-                <Home />
+                <ConnectedHome />
             </div>
         </Provider>,
         document.getElementById('app')
