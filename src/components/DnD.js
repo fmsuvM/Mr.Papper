@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Debug from 'debug';
 
 const debug = Debug('Mr.Papper::DnD::');
 
-export default class DnD extends React.Component {
+class DnD extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -12,3 +13,5 @@ export default class DnD extends React.Component {
         return <div>ドラッグアンドドロップ</div>;
     }
 }
+
+export default connect(null, null)(DnD);

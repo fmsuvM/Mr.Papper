@@ -16,6 +16,7 @@ import { loadingData } from './actions/index';
 import Home from './pages/Home';
 import List from './components/List';
 import DnD from './components/DnD';
+import Start from './components/Start';
 import AppManager from './components/AppManager';
 
 const debug = Debug('Mr.Papper::Root::');
@@ -37,6 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
         <Provider store={store}>
             <ConnectedRouter history={history}>
                 <Switch>
+                    <Route component={Start} path="/hoge" />
                     <Route
                         path="/"
                         render={() => (
@@ -45,6 +47,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                     <Route component={Home} path="/" exact />
                                     <Route component={List} path="/list" />
                                     <Route component={DnD} path="/dnd" />
+                                    <Route component={Start} path="/start" />
                                 </Switch>
                             </AppManager>
                         )}
