@@ -1,15 +1,17 @@
-import Debug from 'debug';
+import * as Debug from 'debug';
 import 'babel-polyfill';
 
 const debug = Debug('Mr.Papper::PDFLoader');
 
 class Loader {
+    dispatch: any;
+    store: any;
     constructor() {
         this.dispatch = null;
         this.store = null;
     }
 
-    init(store) {
+    init(store: any) {
         this.dispatch = store.dispatch;
         this.store = store;
     }
