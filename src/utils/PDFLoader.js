@@ -1,7 +1,7 @@
 import Debug from 'debug';
 import 'babel-polyfill';
 
-const debug = Debug('Mr.Papper::ODFLoader');
+const debug = Debug('Mr.Papper::PDFLoader');
 
 class Loader {
     constructor() {
