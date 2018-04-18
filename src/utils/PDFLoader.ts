@@ -1,7 +1,7 @@
 import * as Debug from 'debug';
 import 'babel-polyfill';
 
-const debug = Debug('Mr.Papper::ODFLoader');
+const debug = Debug('Mr.Papper::PDFLoader');
 
 class Loader {
     dispatch: any;
@@ -16,9 +16,13 @@ class Loader {
         this.store = store;
     }
 
-    async loadFolder() {
-        debug('load paper folder');
-        return 1;
+    async loadFolder(text) {
+        debug('load paper folder:', text);
+        return {
+            hoge: 'fuga',
+            fuga: 'hoge',
+            receive: text
+        };
     }
 }
 
