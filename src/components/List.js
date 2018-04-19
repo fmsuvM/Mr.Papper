@@ -10,7 +10,6 @@ class List extends React.Component {
     }
 
     render() {
-        debug('yeah');
         return <div>リストを表示</div>;
     }
 }

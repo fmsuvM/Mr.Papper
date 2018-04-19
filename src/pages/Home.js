@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Debug from 'debug';
 
@@ -28,10 +27,10 @@ const mapStateToProps = state => ({
     requestData: state.requestData
 });
 
-const mapDispatchToProps = dispatch => ({
-    testFunc: data => {
-        debug('data', data);
-    }
-});
+// const mapDispatchToProps = dispatch => ({
+//     testFunc: data => {
+//         debug('data', data);
+//     }
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, null)(Home);
