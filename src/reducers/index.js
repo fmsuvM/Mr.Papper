@@ -10,10 +10,8 @@ const initialState = {
     isLoading: false,
     page: 0,
     data: {
-        id: 0,
-        title: '',
-        conferences: [],
-        tags: []
+        perId: {},
+        allIds: []
     }
 };
 
