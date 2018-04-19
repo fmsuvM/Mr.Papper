@@ -1,3 +1,5 @@
-export const REQUEST_DATA = 'REQUEST_DATA';
+export const INIT_APP = 'INIT_APP';
+export const CHANGE_MODE = 'MOVE_PAGE';
+export const SEARCH_DATA = 'SEARCH_DATA';
 export const LOADING_DATA = 'LOADING_DATA';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
