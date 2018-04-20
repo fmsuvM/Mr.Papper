@@ -53,11 +53,6 @@ export default handleActions(
                 isLoading: false,
                 papers: data
             });
-        },
-        SELECT_DATA: (state, action) => {
-            const{ path } = action.payload;
-            debug('user selected some data: ', path);
-            return state;
         }
     },
     initialState
