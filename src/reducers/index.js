@@ -10,10 +10,8 @@ const initialState = {
     isLoading: false,
     page: 0,
     data: {
-        id: 0,
-        title: '',
-        conferences: [],
-        tags: []
+        perId: {},
+        allIds: []
     }
 };
 
@@ -50,6 +48,11 @@ export default handleActions(
             return Object.assign({}, state, {
                 isLoading: false
             });
+        },
+        SELECT_DATA: (state, action) => {
+            const{ path } = action.payload;
+            debug('user selected some data: ', path);
+            return state;
         }
     },
     initialState

@@ -5,7 +5,8 @@ import {
     INIT_APP,
     CHANGE_MODE,
     RECEIVE_DATA,
-    LOADING_DATA
+    LOADING_DATA,
+    SELECT_DATA
 } from './actiontypes';
 
 const debug = Debug('Mr.Papper::Action::');
@@ -25,4 +26,8 @@ export const initApp = createAction(INIT_APP, user => {
 
 export const changeMode = createAction(CHANGE_MODE, mode => {
     return mode;
+});
+
+export const selectData = createAction(SELECT_DATA, path => {
+    return path;
 });
