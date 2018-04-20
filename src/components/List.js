@@ -2,12 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Debug from 'debug';
-const{ dialog, remote } = window.require('electron');
+const electron = window.require('electron');
 
-import { selectDirectory } from '../actions/index';
+import { selectData } from '../actions/index';
 import Button from '../UIcomponents/Button';
 
 const debug = Debug('Mr.Papper::List::');
+
+const dialogOptions = {
+    properties: ['openFile', 'openDirectory', 'multiSelections']
+};
 
 class List extends React.Component {
     constructor(props) {
@@ -31,7 +35,10 @@ List.propTypes = {
 const mapDispatchToProps = dispatch => ({
     select: () => {
         debug('select directory');
-        dispatch(selectDirectory());
+        electron.remote.dialog.showOpenDialog(dialogOptions, res => {
+            debug('response', res);
+            dispatch(selectData(res));
+        });
     }
 });
 
