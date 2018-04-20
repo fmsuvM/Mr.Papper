@@ -11,7 +11,6 @@ class Home extends Component {
         super(props);
     }
     render() {
-        debug('yeah');
         return (
             <div>
                 <Button>Normal Button</Button>
@@ -26,11 +25,5 @@ Home.propTypes = {};
 const mapStateToProps = state => ({
     requestData: state.requestData
 });
-
-// const mapDispatchToProps = dispatch => ({
-//     testFunc: data => {
-//         debug('data', data);
-//     }
-// });
 
 export default connect(mapStateToProps, null)(Home);
