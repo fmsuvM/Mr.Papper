@@ -9,6 +9,7 @@ const initialState = {
     requestData: false,
     isLoading: false,
     page: 0,
+    papers: [],
     data: {
         perId: {},
         allIds: []
@@ -19,10 +20,10 @@ export default handleActions(
     {
         INIT_APP: (state, action) => {
             /** receive user data & show profile */
-            debug('init app and user name: ', action.payload);
             const{ name } = action.payload;
             return Object.assign({}, state, {
-                username: name
+                username: name,
+                isLoading: true
             });
         },
         '@@router/LOCATION_CHANGE': (state, action) => {
@@ -43,10 +44,14 @@ export default handleActions(
             });
         },
         RECEIVE_DATA: (state, action) => {
-            debug('received data:', state);
-            debug('action: ', action);
+            const{ data } = action.payload;
+            /**
+             * data is array.
+             *
+             */
             return Object.assign({}, state, {
-                isLoading: false
+                isLoading: false,
+                papers: data
             });
         },
         SELECT_DATA: (state, action) => {
