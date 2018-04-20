@@ -19,13 +19,21 @@ class List extends React.Component {
     }
 
     render() {
+        const papers = this.props.papers;
+        debug('papers: ', papers);
         return (
             <div>
                 <p>リストを表示</p>
                 {this.props.isLoading ? (
-                    <p>loading ...</p>
+                    <p>Now Loading...</p>
                 ) : (
-                    <p>{this.props.papers[0]}</p>
+                    <ul>
+                        {papers.map((paper, key) => {
+                            debug('paper: ', paper);
+                            debug('key', key);
+                            return <li key={key}>{paper}</li>;
+                        })}
+                    </ul>
                 )}
                 <Button onClick={this.props.select}>フォルダ選択ボタン</Button>
             </div>
