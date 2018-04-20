@@ -6,7 +6,7 @@ import {
     CHANGE_MODE,
     RECEIVE_DATA,
     LOADING_DATA,
-    SELECT_DIRECTORY
+    SELECT_DATA
 } from './actiontypes';
 
 const debug = Debug('Mr.Papper::Action::');
@@ -28,4 +28,6 @@ export const changeMode = createAction(CHANGE_MODE, mode => {
     return mode;
 });
 
-export const selectDirectory = createAction(SELECT_DIRECTORY);
+export const selectData = createAction(SELECT_DATA, path => {
+    return path;
+});

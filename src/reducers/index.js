@@ -48,6 +48,11 @@ export default handleActions(
             return Object.assign({}, state, {
                 isLoading: false
             });
+        },
+        SELECT_DATA: (state, action) => {
+            const{ path } = action.payload;
+            debug('user selected some data: ', path);
+            return state;
         }
     },
     initialState
