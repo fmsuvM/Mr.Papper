@@ -16,18 +16,42 @@ const dialogOptions = {
 class List extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            open: false
+        };
+        this.open = trigger => () => {
+            this.setState({
+                open: !trigger
+            });
+        };
     }
 
     render() {
+        const papers = this.props.papers;
+        debug('papers: ', papers);
+        let categorizedPage = null;
+        categorizedPage = (
+            <div>
+                <ul>
+                    {papers.map((paper, key) => {
+                        return <li key={key}>{paper}</li>;
+                    })}
+                </ul>
+            </div>
+        );
         return (
             <div>
                 <p>リストを表示</p>
                 {this.props.isLoading ? (
-                    <p>loading ...</p>
+                    <p>Now Loading...</p>
                 ) : (
-                    <p>{this.props.papers[0]}</p>
+                    <div>
+                        {this.state.open ? <div>{categorizedPage}</div> : null}
+                        <Button onClick={this.open(this.state.open)}>
+                            開く
+                        </Button>
+                    </div>
                 )}
-                <Button onClick={this.props.select}>フォルダ選択ボタン</Button>
             </div>
         );
     }
@@ -36,7 +60,8 @@ class List extends React.Component {
 List.propTypes = {
     select: PropTypes.func,
     papers: PropTypes.array,
-    isLoading: PropTypes.bool
+    isLoading: PropTypes.bool,
+    open: PropTypes.func
 };
 
 const mapStateToProps = state => ({
@@ -51,7 +76,8 @@ const mapDispatchToProps = dispatch => ({
             debug('response', res);
             dispatch(selectData(res));
         });
-    }
+    },
+    open: () => {}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);
