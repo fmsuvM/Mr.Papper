@@ -11,7 +11,7 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import reducers from './reducers/index';
 import epicsMiddleware from './middleware/index';
 import loader from './utils/PDFLoader';
-import { loadingData } from './actions/index';
+import { initApp } from './actions/index';
 
 import Home from './pages/Home';
 import List from './components/List';
@@ -23,6 +23,9 @@ const debug = Debug('Mr.Papper::Root::');
 
 window.addEventListener('DOMContentLoaded', () => {
     debug('=====> Mount App');
+    const _user = {
+        name: 'tkd'
+    };
     const history = createMemoryHistory();
     const composeEnhances =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -33,7 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
         )
     );
     loader.init(store);
-    store.dispatch(loadingData('initialize'));
+    store.dispatch(initApp(_user));
     ReactDOM.render(
         <Provider store={store}>
             <ConnectedRouter history={history}>

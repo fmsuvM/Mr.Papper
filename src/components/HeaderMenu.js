@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import Debug from 'debug';
 
 const debug = Debug('Mr.Papper::HeaderMenu::');
@@ -30,13 +32,18 @@ class HeaderMenu extends React.Component {
     }
 }
 
+HeaderMenu.propTypes = {
+    jump: PropTypes.func
+};
+
 const mapStateToProps = state => ({
     requestData: state.requestData
 });
 
 const mapDispatchToProps = dispatch => ({
-    testFunc: data => {
-        debug('data', data);
+    jump: mode => {
+        debug('jump mde: ', mode);
+        dispatch(push(`/${mode}`));
     }
 });
 

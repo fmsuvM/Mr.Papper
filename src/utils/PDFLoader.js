@@ -15,6 +15,11 @@ class Loader {
     }
 
     async loadFolder(text) {
+        /** TODO: load from specified directory(e.g. papers)
+         * user selected directory
+         * Object in Array
+         * dtabase ?
+         */
         debug('load paper folder:', text);
         return {
             hoge: 'fuga',
