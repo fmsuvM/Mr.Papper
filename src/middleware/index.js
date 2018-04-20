@@ -1,23 +1,29 @@
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import Rx from 'rxjs';
 import Debug from 'debug';
+const electron = window.require('electron');
 
 import loader from '../utils/PDFLoader';
-import { receiveData, loadingData } from '../actions/index';
+import { INIT_APP } from '../actions/actiontypes';
+import { receiveData } from '../actions/index';
 
 const debug = Debug('Mr.Papper::middleware::');
 
-const searchDataEpic = (action$, store) =>
+const initializeAppEpic = (action$, store) =>
     action$
-        .ofType('@@router/LOCATION_CHANGE')
-        .filter(action => action.payload.pathname === '/list')
-        .do(_ => store.dispatch(loadingData()))
+        .ofType(INIT_APP)
         .switchMap(action => {
-            debug('search papers action payload: ', action.payload);
-            return loader.loadFolder('');
+            const path = electron.remote.dialog.showOpenDialog({
+                properties: ['openDirectory']
+            });
+            const{ name } = action.payload;
+            debug(`${name} select and load folder`, path[0]);
+            /**
+             * store user info to localStorage
+             * when there are user name, this process must be passed
+             */
+            return loader.loadDir(path[0]);
         })
-        .map(data => {
-            debug('searched');
-            return receiveData(data);
-        });
-export default createEpicMiddleware(combineEpics(searchDataEpic));
+        .map(data => receiveData(data));
+
+export default createEpicMiddleware(combineEpics(initializeAppEpic));
