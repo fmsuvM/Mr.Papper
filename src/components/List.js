@@ -22,6 +22,11 @@ class List extends React.Component {
         return (
             <div>
                 <p>リストを表示</p>
+                {this.props.isLoading ? (
+                    <p>loading ...</p>
+                ) : (
+                    <p>{this.props.papers[0]}</p>
+                )}
                 <Button onClick={this.props.select}>フォルダ選択ボタン</Button>
             </div>
         );
@@ -29,8 +34,15 @@ class List extends React.Component {
 }
 
 List.propTypes = {
-    select: PropTypes.func
+    select: PropTypes.func,
+    papers: PropTypes.array,
+    isLoading: PropTypes.bool
 };
+
+const mapStateToProps = state => ({
+    papers: state.papers,
+    isLoading: state.isLoading
+});
 
 const mapDispatchToProps = dispatch => ({
     select: () => {
@@ -42,4 +54,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export default connect(null, mapDispatchToProps)(List);
+export default connect(mapStateToProps, mapDispatchToProps)(List);
