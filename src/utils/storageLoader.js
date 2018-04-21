@@ -16,18 +16,15 @@ class StorageLoader {
     saveUserInfo(info) {
         localStorage.setItem('name', info.name);
         localStorage.setItem('dir', info.dir);
-        debug('set localStorage', localStorage);
     }
 
     checkUserInfo() {
-        debug('check usr info', localStorage);
         const name = localStorage.name;
         if(!name || name === '') return false;
         return true;
     }
 
     loadUserInfo() {
-        debug('load user info', localStorage);
         return {
             user: localStorage.getItem('name'),
             dir: localStorage.getItem('dir')

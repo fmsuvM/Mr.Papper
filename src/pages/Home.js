@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Debug from 'debug';
 
 import Button from '../UIcomponents/Button';
-import { signinUser } from '../actions/index';
+import { signinUser, signOutUser } from '../actions/index';
 import storageLoader from '../utils/storageLoader';
 
 const debug = Debug('Mr.Papper::Component::Home');
@@ -42,12 +42,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     clearUserInfo: () => {
-        debug('delete user info');
         storageLoader.clearUserInfo();
+        dispatch(signOutUser());
         debug('cleared user info: ', localStorage);
     },
     signIn: () => {
-        debug('sign in');
         const check = storageLoader.checkUserInfo();
         dispatch(signinUser(check));
     }

@@ -36,7 +36,6 @@ const initializeAppEpic = (action$, store) =>
         .ofType(INIT_APP)
         .switchMap(action => {
             const{ name, dir } = action.payload;
-            debug(`${name} select and load folder: `, dir);
             return loader.loadDir(dir);
         })
         .map(data => receiveData(data));
