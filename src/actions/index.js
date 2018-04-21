@@ -7,7 +7,8 @@ import {
     RECEIVE_DATA,
     LOADING_DATA,
     SELECT_DATA,
-    SINGIN_USER
+    SINGIN_USER,
+    SIGNOUT_USER
 } from './actiontypes';
 
 const debug = Debug('Mr.Papper::Action::');
@@ -36,3 +37,5 @@ export const selectData = createAction(SELECT_DATA, path => {
 export const signinUser = createAction(SINGIN_USER, check => {
     return check;
 });
+
+export const signOutUser = createAction(SIGNOUT_USER);
