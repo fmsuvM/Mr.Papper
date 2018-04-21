@@ -4,3 +4,4 @@ export const SEARCH_DATA = 'SEARCH_DATA';
 export const LOADING_DATA = 'LOADING_DATA';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 export const SELECT_DATA = 'SELECT_DATA';
+export const SINGIN_USER = 'SIGNIN_USER';

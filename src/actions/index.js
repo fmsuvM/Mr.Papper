@@ -6,7 +6,8 @@ import {
     CHANGE_MODE,
     RECEIVE_DATA,
     LOADING_DATA,
-    SELECT_DATA
+    SELECT_DATA,
+    SINGIN_USER
 } from './actiontypes';
 
 const debug = Debug('Mr.Papper::Action::');
@@ -20,8 +21,8 @@ export const receiveData = createAction(RECEIVE_DATA, data => {
 
 export const loadingData = createAction(LOADING_DATA);
 
-export const initApp = createAction(INIT_APP, user => {
-    return user;
+export const initApp = createAction(INIT_APP, userInfo => {
+    return userInfo;
 });
 
 export const changeMode = createAction(CHANGE_MODE, mode => {
@@ -30,4 +31,8 @@ export const changeMode = createAction(CHANGE_MODE, mode => {
 
 export const selectData = createAction(SELECT_DATA, path => {
     return path;
+});
+
+export const signinUser = createAction(SINGIN_USER, check => {
+    return check;
 });
