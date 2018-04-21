@@ -1,29 +1,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Debug from 'debug';
 
 import Button from '../UIcomponents/Button';
+import { signinUser } from '../actions/index';
+import storageLoader from '../utils/storageLoader';
 
 const debug = Debug('Mr.Papper::Component::Home');
 
 class Home extends Component {
     constructor(props) {
         super(props);
+        this.clearUserInfo = () => {
+            this.props.clearUserInfo();
+        };
+        this.signIn = () => {
+            this.props.signIn();
+        };
     }
     render() {
         return (
             <div>
-                <Button>Normal Button</Button>
-                <Button primary> Primary Button</Button>
+                <Button onClick={this.signIn}>SIGN IN</Button>
+                <Button primary={'primary'} onClick={this.clearUserInfo}>
+                    Log Out
+                </Button>
             </div>
         );
     }
 }
 
-Home.propTypes = {};
+Home.propTypes = {
+    clearUserInfo: PropTypes.func,
+    signIn: PropTypes.func
+};
 
 const mapStateToProps = state => ({
     requestData: state.requestData
 });
 
-export default connect(mapStateToProps, null)(Home);
+const mapDispatchToProps = dispatch => ({
+    clearUserInfo: () => {
+        debug('delete user info');
+        storageLoader.clearUserInfo();
+        debug('cleared user info: ', localStorage);
+    },
+    signIn: () => {
+        debug('sign in');
+        const check = storageLoader.checkUserInfo();
+        dispatch(signinUser(check));
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
