@@ -8,6 +8,7 @@
 * D&D to this system, then you can manage paper
 * Not only paper, but also you can manage web pages using links
 * Add comment using markdown
+* Set priority order of reading paper
 
 ## Development
 
