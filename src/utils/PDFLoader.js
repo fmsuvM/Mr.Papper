@@ -17,7 +17,6 @@ class Loader {
 
     async loadDir(path) {
         const files = await fs.readdir(path);
-        debug(`scan files in ${path}`, files);
         return files;
     }
 }
