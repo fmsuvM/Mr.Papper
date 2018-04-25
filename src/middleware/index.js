@@ -5,8 +5,8 @@ const electron = window.require('electron');
 
 import loader from '../utils/PDFLoader';
 import storageLoader from '../utils/storageLoader';
-import { INIT_APP, SINGIN_USER } from '../actions/actiontypes';
-import { receiveData, initApp } from '../actions/index';
+import { INIT_APP, SINGIN_USER, REGIST_PAPER } from '../actions/actiontypes';
+import { receiveData, initApp, openPaperRegister } from '../actions/index';
 
 const debug = Debug('Mr.Papper::middleware::');
 
@@ -40,6 +40,11 @@ const initializeAppEpic = (action$, store) =>
         })
         .map(data => receiveData(data));
 
+const registPaperEpic = (action$, store) =>
+    action$
+        .ofType(REGIST_PAPER)
+        .map(action => openPaperRegister(action.payload));
+
 export default createEpicMiddleware(
-    combineEpics(signInUserEpic, initializeAppEpic)
+    combineEpics(signInUserEpic, initializeAppEpic, registPaperEpic)
 );
