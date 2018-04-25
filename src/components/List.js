@@ -2,18 +2,35 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Debug from 'debug';
+import ReactModal from 'react-modal';
 
-import { selectData } from '../actions/index';
+import { registPaper, closePaperModal, dummyAction } from '../actions/index';
 import Button from '../UIcomponents/Button';
+import PaperEditForm from './PaperEditForm';
 
 const debug = Debug('Mr.Papper::List::');
+
+const modalStyles = {
+    content: {
+        top: '30%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
 
 class List extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             openPaper: false,
-            openUnknown: false
+            openUnknown: false,
+            description: 'enter paper title',
+            status: {
+                title: null
+            }
         };
         this.openPaper = trigger => () => {
             this.setState({
@@ -24,6 +41,16 @@ class List extends React.Component {
             this.setState({
                 openUnknown: !trigger
             });
+        };
+        this.registeringPaper = filename => () => {
+            this.props.registeringPaper(filename);
+        };
+        this.closePaperModal = () => {
+            this.props.closePaperModal();
+        };
+        this.submitPaperStatus = status => {
+            debug('status: ', status);
+            this.props.submitPaperStatus(status);
         };
     }
 
@@ -54,7 +81,14 @@ class List extends React.Component {
                         {unknown.map((_unknown, key) => {
                             return (
                                 <li key={key}>
-                                    {_unknown} <p>論文を登録する</p>
+                                    {_unknown}{' '}
+                                    <p
+                                        onClick={this.registeringPaper(
+                                            _unknown
+                                        )}
+                                    >
+                                        論文を登録するボタン
+                                    </p>
                                 </li>
                             );
                         })}
@@ -93,6 +127,24 @@ class List extends React.Component {
                         </div>
                     </div>
                 )}
+                {this.props.isShowModal ? (
+                    <ReactModal
+                        isOpen={this.props.isShowModal}
+                        style={modalStyles}
+                        onRequestClose={this.closePaperModal}
+                        contentLabel="delete confirmation"
+                        ariaHideApp={false}
+                    >
+                        <h2>論文登録開始</h2>
+                        <p> paper name is {this.props.targetPaper}</p>
+                        <PaperEditForm
+                            onSubmit={values => this.submitPaperStatus(values)}
+                        />
+                        <Button onClick={this.closePaperModal}>close</Button>
+                    </ReactModal>
+                ) : (
+                    <span />
+                )}
             </div>
         );
     }
@@ -103,18 +155,32 @@ List.propTypes = {
     paper: PropTypes.array,
     unknown: PropTypes.array,
     isLoading: PropTypes.bool,
-    open: PropTypes.func
+    open: PropTypes.func,
+    registeringPaper: PropTypes.func,
+    isShowModal: PropTypes.bool,
+    targetPaper: PropTypes.string,
+    closePaperModal: PropTypes.func,
+    submitPaperStatus: PropTypes.func
 };
 
 const mapStateToProps = state => ({
     paper: state.manager.paper,
     unknown: state.manager.unknown,
-    isLoading: state.manager.isLoading
+    isLoading: state.manager.isLoading,
+    isShowModal: state.manager.isShowModal,
+    targetPaper: state.manager.targetPaper
 });
 
 const mapDispatchToProps = dispatch => ({
-    hoge: () => {
-        debug('hogehoge');
+    registeringPaper: filename => {
+        dispatch(registPaper(filename));
+    },
+    closePaperModal: () => {
+        dispatch(closePaperModal());
+    },
+    submitPaperStatus: status => {
+        debug('status: ', status);
+        dispatch(dummyAction(status));
     }
 });
 
