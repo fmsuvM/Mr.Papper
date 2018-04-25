@@ -17,39 +17,82 @@ class List extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            openPaper: false,
+            openUnknown: false
         };
-        this.open = trigger => () => {
+        this.openPaper = trigger => () => {
             this.setState({
-                open: !trigger
+                openPaper: !trigger
+            });
+        };
+        this.openUnknown = trigger => () => {
+            this.setState({
+                openUnknown: !trigger
             });
         };
     }
 
     render() {
-        const papers = this.props.papers;
-        debug('papers: ', papers);
-        let categorizedPage = null;
-        categorizedPage = (
-            <div>
-                <ul>
-                    {papers.map((paper, key) => {
-                        return <li key={key}>{paper}</li>;
-                    })}
-                </ul>
-            </div>
-        );
+        const paper = this.props.paper;
+        const unknown = this.props.unknown;
+        debug('props: ', this.props);
+        let paperList = null;
+        if(paper.length === 0) {
+            paperList = <p>論文は登録されていません</p>;
+        } else {
+            paperList = (
+                <div>
+                    <ul>
+                        {paper.map((_paper, key) => {
+                            return <li key={key}>{_paper}</li>;
+                        })}
+                    </ul>
+                </div>
+            );
+        }
+        let unknownList = null;
+        if(unknown.length === 0) {
+            unknownList = <p>未分類の論文はありません</p>;
+        } else {
+            unknownList = (
+                <div>
+                    <ul>
+                        {unknown.map((_unknown, key) => {
+                            return <li key={key}>{_unknown}</li>;
+                        })}
+                    </ul>
+                </div>
+            );
+        }
         return (
             <div>
-                <p>リストを表示</p>
+                <p>論文リスト</p>
                 {this.props.isLoading ? (
                     <p>Now Loading...</p>
                 ) : (
                     <div>
-                        {this.state.open ? <div>{categorizedPage}</div> : null}
-                        <Button onClick={this.open(this.state.open)}>
-                            開く
-                        </Button>
+                        <div>
+                            {this.state.openPaper ? (
+                                <div>{paperList}</div>
+                            ) : null}
+                            <Button
+                                onClick={this.openPaper(this.state.openPaper)}
+                            >
+                                論文リストを開く
+                            </Button>
+                        </div>
+                        <div>
+                            {this.state.openUnknown ? (
+                                <div>{unknownList}</div>
+                            ) : null}
+                            <Button
+                                onClick={this.openUnknown(
+                                    this.state.openUnknown
+                                )}
+                            >
+                                未分類リストを開く
+                            </Button>
+                        </div>
                     </div>
                 )}
             </div>
@@ -59,14 +102,16 @@ class List extends React.Component {
 
 List.propTypes = {
     select: PropTypes.func,
-    papers: PropTypes.array,
+    paper: PropTypes.array,
+    unknown: PropTypes.array,
     isLoading: PropTypes.bool,
     open: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-    papers: state.papers,
-    isLoading: state.isLoading
+    paper: state.manager.paper,
+    unknown: state.manager.unknown,
+    isLoading: state.manager.isLoading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -76,8 +121,7 @@ const mapDispatchToProps = dispatch => ({
             debug('response', res);
             dispatch(selectData(res));
         });
-    },
-    open: () => {}
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);

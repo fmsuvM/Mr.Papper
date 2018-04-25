@@ -37,7 +37,7 @@ HeaderMenu.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    requestData: state.requestData
+    requestData: state.manager.requestData
 });
 
 const mapDispatchToProps = dispatch => ({
