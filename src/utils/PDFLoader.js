@@ -1,5 +1,7 @@
 import Debug from 'debug';
 import fs from 'fs-extra';
+import path from 'path';
+import paperlist from '../data/paperList.json';
 import 'babel-polyfill';
 
 const debug = Debug('Mr.Papper::PDFLoader');
@@ -15,9 +17,23 @@ class Loader {
         this.store = store;
     }
 
-    async loadDir(path) {
-        const files = await fs.readdir(path);
-        return files;
+    diffArray(arr1, arr2) {
+        return arr1
+            .concat(arr2)
+            .filter(item => !arr1.includes(item) || !arr2.includes(item));
+    }
+
+    async loadDir(_path) {
+        const files = await fs.readdir(_path);
+        const diff = this.diffArray(
+            paperlist['paper-list']['registered'],
+            files
+        );
+        const registered = this.diffArray(files, diff);
+        return {
+            registered: registered,
+            unregistered: diff
+        };
     }
 }
 
