@@ -1,10 +1,12 @@
 {
-    "row-file-name": {
-        "title": "Dummy Cursor Project",
-        "subtitle": "ダミーカーソルプロジェクト",
+    "paperInfo": {
+        "originname": "",
+        "title": "",
+        "subtitle": "",
         "tags": [],
         "authors": [],
-        "publish-date": "",
-        "download-date": ""
+        "publishDate": "",
+        "download-date": "",
+        "meta": {}
     }
 }
