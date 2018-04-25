@@ -2,16 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Debug from 'debug';
-const electron = window.require('electron');
 
 import { selectData } from '../actions/index';
 import Button from '../UIcomponents/Button';
 
 const debug = Debug('Mr.Papper::List::');
-
-const dialogOptions = {
-    properties: ['openFile', 'openDirectory', 'multiSelections']
-};
 
 class List extends React.Component {
     constructor(props) {
@@ -35,7 +30,6 @@ class List extends React.Component {
     render() {
         const paper = this.props.paper;
         const unknown = this.props.unknown;
-        debug('props: ', this.props);
         let paperList = null;
         if(paper.length === 0) {
             paperList = <p>論文は登録されていません</p>;
@@ -58,7 +52,11 @@ class List extends React.Component {
                 <div>
                     <ul>
                         {unknown.map((_unknown, key) => {
-                            return <li key={key}>{_unknown}</li>;
+                            return (
+                                <li key={key}>
+                                    {_unknown} <p>論文を登録する</p>
+                                </li>
+                            );
                         })}
                     </ul>
                 </div>
@@ -115,12 +113,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    select: () => {
-        debug('select directory');
-        electron.remote.dialog.showOpenDialog(dialogOptions, res => {
-            debug('response', res);
-            dispatch(selectData(res));
-        });
+    hoge: () => {
+        debug('hogehoge');
     }
 });
 

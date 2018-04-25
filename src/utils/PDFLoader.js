@@ -1,6 +1,5 @@
 import Debug from 'debug';
 import fs from 'fs-extra';
-import path from 'path';
 import paperlist from '../data/paperList.json';
 import 'babel-polyfill';
 
