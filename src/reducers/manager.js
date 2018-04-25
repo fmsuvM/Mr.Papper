@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import fs from 'fs-extra';
 import Debug from 'debug';
 
 const debug = Debug('Mr.Papper::reducers::manager');
@@ -17,6 +18,17 @@ const initialState = {
         perId: {},
         allIds: []
     }
+};
+
+const fetchPaperInfo = paper => {
+    const paperObj = [];
+    paper.map((filename, index) => {
+        const _info = fs.readJsonSync(
+            `${__dirname}/../src/data/paper/${filename}.json`
+        );
+        paperObj[index] = _info;
+    });
+    return paperObj;
 };
 
 export default handleActions(
@@ -46,7 +58,7 @@ export default handleActions(
             const{ registered, unregistered } = action.payload;
             return Object.assign({}, state, {
                 isLoading: false,
-                paper: registered,
+                paper: fetchPaperInfo(registered),
                 unknown: unregistered
             });
         },
@@ -60,6 +72,18 @@ export default handleActions(
             return Object.assign({}, state, {
                 isShowModal: false,
                 targetPaper: null
+            });
+        },
+        REGISTERING_PAPER: (state, action) => {
+            return Object.assign({}, state, {
+                isLoading: true
+            });
+        },
+        CREATE_PAPER_JSON: (state, action) => {
+            debug('create paper info action: ', action.payload);
+            return Object.assign({}, state, {
+                isLoading: false,
+                isShowModal: false
             });
         },
         DUMMY_ACTION: (state, action) => {

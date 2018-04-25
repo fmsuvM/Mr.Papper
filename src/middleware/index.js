@@ -9,8 +9,10 @@ import {
     INIT_APP,
     SINGIN_USER,
     REGIST_PAPER,
+    RECEIVE_PAPER_INFO
 } from '../actions/actiontypes';
 import {
+    receiveData,
     initApp,
     openPaperRegister,
     registeringPaper,
@@ -54,9 +56,21 @@ const registPaperEpic = (action$, store) =>
         .ofType(REGIST_PAPER)
         .map(action => openPaperRegister(action.payload));
 
+const receivePaperInfoEpic = (action$, store) =>
+    action$
+        .ofType(RECEIVE_PAPER_INFO)
+        .do(_ => store.dispatch(registeringPaper()))
+        .switchMap(action => loader.createPaperData(action.payload))
+        .map(data => {
+            debug('data: ', data);
+            return createPaperJson(data);
+        });
+
 export default createEpicMiddleware(
     combineEpics(
         signInUserEpic,
         initializeAppEpic,
         registPaperEpic,
+        receivePaperInfoEpic
+    )
 );

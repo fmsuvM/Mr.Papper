@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import Debug from 'debug';
 import ReactModal from 'react-modal';
 
-import { registPaper, closePaperModal, dummyAction } from '../actions/index';
+import {
     registPaper,
     closePaperModal,
+    receivePaperInfo
+} from '../actions/index';
 import Button from '../UIcomponents/Button';
 import PaperEditForm from './PaperEditForm';
 
@@ -14,12 +16,15 @@ const debug = Debug('Mr.Papper::List::');
 
 const modalStyles = {
     content: {
-        top: '30%',
+        width: '700px',
+        height: '400px',
+        top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
+        transform: 'translate(-50%, -50%)',
+        overlfow: 'scroll'
     }
 };
 
@@ -51,7 +56,7 @@ class List extends React.Component {
             this.props.closePaperModal();
         };
         this.submitPaperStatus = status => {
-            debug('status: ', status);
+            status.originname = this.props.targetPaper;
             this.props.submitPaperStatus(status);
         };
     }
@@ -67,7 +72,8 @@ class List extends React.Component {
                 <div>
                     <ul>
                         {paper.map((_paper, key) => {
-                            return <li key={key}>{_paper}</li>;
+                            const{ title } = _paper;
+                            return <li key={key}>{title}</li>;
                         })}
                     </ul>
                 </div>

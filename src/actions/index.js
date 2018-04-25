@@ -12,6 +12,7 @@ import {
     REGIST_PAPER,
     OPEN_PAPER_REGISTER,
     CLOSE_PAPER_MODAL,
+    RECEIVE_PAPER_INFO,
     REGISTERING_PAPER,
     CREATE_PAPER_JSON,
     DUMMY_ACTION
@@ -52,6 +53,10 @@ export const openPaperRegister = createAction(OPEN_PAPER_REGISTER, filename => {
 });
 
 export const closePaperModal = createAction(CLOSE_PAPER_MODAL);
+
+export const receivePaperInfo = createAction(RECEIVE_PAPER_INFO, info => {
+    return info;
+});
 
 export const registeringPaper = createAction(REGISTERING_PAPER);
 
