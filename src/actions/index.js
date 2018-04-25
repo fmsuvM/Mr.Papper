@@ -8,7 +8,11 @@ import {
     LOADING_DATA,
     SELECT_DATA,
     SINGIN_USER,
-    SIGNOUT_USER
+    SIGNOUT_USER,
+    REGIST_PAPER,
+    OPEN_PAPER_REGISTER,
+    CLOSE_PAPER_MODAL,
+    DUMMY_ACTION
 } from './actiontypes';
 
 const debug = Debug('Mr.Papper::Action::');
@@ -36,3 +40,17 @@ export const signinUser = createAction(SINGIN_USER, check => {
 });
 
 export const signOutUser = createAction(SIGNOUT_USER);
+
+export const registPaper = createAction(REGIST_PAPER, filename => {
+    return filename;
+});
+
+export const openPaperRegister = createAction(OPEN_PAPER_REGISTER, filename => {
+    return filename;
+});
+
+export const closePaperModal = createAction(CLOSE_PAPER_MODAL);
+
+export const dummyAction = createAction(DUMMY_ACTION, data => {
+    return data;
+});
