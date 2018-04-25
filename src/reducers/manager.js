@@ -8,6 +8,8 @@ const initialState = {
     mode: 'init',
     requestData: false,
     isLoading: false,
+    isShowModal: false,
+    targetPaper: null,
     page: 0,
     paper: [],
     unknown: [],
@@ -35,9 +37,6 @@ export default handleActions(
             });
         },
         LOADING_DATA: (state, action) => {
-            /** Application load data based on user request
-             * so, this reducer must be included action payload
-             */
             debug('loading data:', action.pauload);
             return Object.assign({}, state, {
                 isLoading: true
@@ -49,6 +48,24 @@ export default handleActions(
                 isLoading: false,
                 paper: registered,
                 unknown: unregistered
+            });
+        },
+        OPEN_PAPER_REGISTER: (state, action) => {
+            return Object.assign({}, state, {
+                isShowModal: true,
+                targetPaper: action.payload
+            });
+        },
+        CLOSE_PAPER_MODAL: (state, action) => {
+            return Object.assign({}, state, {
+                isShowModal: false,
+                targetPaper: null
+            });
+        },
+        DUMMY_ACTION: (state, action) => {
+            debug('dummy action: ', action.payload);
+            return Object.assign({}, state, {
+                isShowModal: false
             });
         }
     },
