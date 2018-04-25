@@ -5,6 +5,8 @@ import Debug from 'debug';
 import ReactModal from 'react-modal';
 
 import { registPaper, closePaperModal, dummyAction } from '../actions/index';
+    registPaper,
+    closePaperModal,
 import Button from '../UIcomponents/Button';
 import PaperEditForm from './PaperEditForm';
 
@@ -180,7 +182,7 @@ const mapDispatchToProps = dispatch => ({
     },
     submitPaperStatus: status => {
         debug('status: ', status);
-        dispatch(dummyAction(status));
+        dispatch(receivePaperInfo(status));
     }
 });
 

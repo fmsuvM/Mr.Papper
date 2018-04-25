@@ -9,6 +9,8 @@ export const SIGNOUT_USER = 'SIGNOUT_USER';
 export const REGIST_PAPER = 'REGIST_PAPER';
 export const OPEN_PAPER_REGISTER = 'OPEN_PAPER_REGISTER';
 export const CLOSE_PAPER_MODAL = 'CLOSE_PAPER_MODAL';
+export const REGISTERING_PAPER = 'REGISTERING_PAPER';
+export const CREATE_PAPER_JSON = 'CREATE_PAPER_JSON';
 
 /** for test */
 export const DUMMY_ACTION = 'DUMMY_ACTION';

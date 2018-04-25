@@ -12,6 +12,8 @@ import {
     REGIST_PAPER,
     OPEN_PAPER_REGISTER,
     CLOSE_PAPER_MODAL,
+    REGISTERING_PAPER,
+    CREATE_PAPER_JSON,
     DUMMY_ACTION
 } from './actiontypes';
 
@@ -50,6 +52,12 @@ export const openPaperRegister = createAction(OPEN_PAPER_REGISTER, filename => {
 });
 
 export const closePaperModal = createAction(CLOSE_PAPER_MODAL);
+
+export const registeringPaper = createAction(REGISTERING_PAPER);
+
+export const createPaperJson = createAction(CREATE_PAPER_JSON, info => {
+    return info;
+});
 
 export const dummyAction = createAction(DUMMY_ACTION, data => {
     return data;
