@@ -9,7 +9,8 @@ const initialState = {
     requestData: false,
     isLoading: false,
     page: 0,
-    papers: [],
+    paper: [],
+    unknown: [],
     data: {
         perId: {},
         allIds: []
@@ -43,14 +44,11 @@ export default handleActions(
             });
         },
         RECEIVE_DATA: (state, action) => {
-            const{ data } = action.payload;
-            /**
-             * data is array.
-             *
-             */
+            const{ registered, unregistered } = action.payload;
             return Object.assign({}, state, {
                 isLoading: false,
-                papers: data
+                paper: registered,
+                unknown: unregistered
             });
         }
     },

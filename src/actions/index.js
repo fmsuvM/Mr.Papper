@@ -14,10 +14,7 @@ import {
 const debug = Debug('Mr.Papper::Action::');
 
 export const receiveData = createAction(RECEIVE_DATA, data => {
-    debug('data: ', data);
-    return {
-        data
-    };
+    return data;
 });
 
 export const loadingData = createAction(LOADING_DATA);
