@@ -5,7 +5,7 @@ import Debug from 'debug';
 
 import Button from '../UIcomponents/Button';
 import { signinUser, signOutUser } from '../actions/index';
-import storageLoader from '../utils/storageLoader';
+import storageUtil from '../utils/storageUtil';
 
 const debug = Debug('Mr.Papper::Component::Home');
 
@@ -42,12 +42,12 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     clearUserInfo: () => {
-        storageLoader.clearUserInfo();
+        storageUtil.clearUserInfo();
         dispatch(signOutUser());
         debug('cleared user info: ', localStorage);
     },
     signIn: () => {
-        const check = storageLoader.checkUserInfo();
+        const check = storageUtil.checkUserInfo();
         dispatch(signinUser(check));
     }
 });

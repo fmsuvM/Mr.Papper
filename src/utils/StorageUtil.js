@@ -1,8 +1,8 @@
 import Debug from 'debug';
 
-const debug = Debug('Mr.Papper::Utils::storageLoader');
+const debug = Debug('Mr.Papper::Utils::StorageUtil');
 
-class StorageLoader {
+class StorageUtil {
     constructor() {
         this.dispatch = null;
         this.store = null;
@@ -37,5 +37,5 @@ class StorageLoader {
     }
 }
 
-const storageLoader = new StorageLoader();
-export default storageLoader;
+const storageUtil = new StorageUtil();
+export default storageUtil;
