@@ -28,7 +28,7 @@ const modalStyles = {
     }
 };
 
-class List extends React.Component {
+class PaperList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -158,7 +158,7 @@ class List extends React.Component {
     }
 }
 
-List.propTypes = {
+PaperList.propTypes = {
     select: PropTypes.func,
     paper: PropTypes.array,
     unknown: PropTypes.array,
@@ -192,4 +192,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default connect(mapStateToProps, mapDispatchToProps)(PaperList);

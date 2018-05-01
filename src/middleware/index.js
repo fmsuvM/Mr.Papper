@@ -3,8 +3,8 @@ import Rx from 'rxjs';
 import Debug from 'debug';
 const electron = window.require('electron');
 
-import loader from '../utils/PDFLoader';
-import storageLoader from '../utils/storageLoader';
+import pdfUtil from '../utils/PDFUtil';
+import storageUtil from '../utils/StorageUtil';
 import {
     INIT_APP,
     SINGIN_USER,
@@ -30,14 +30,14 @@ const selectDir = () => {
         name: 'tkd',
         dir: path[0]
     };
-    storageLoader.saveUserInfo(info);
+    storageUtil.saveUserInfo(info);
     return info;
 };
 
 const signInUserEpic = (action$, store) =>
     action$.ofType(SINGIN_USER).map(action => {
         const userInfo = action.payload ?
-            storageLoader.loadUserInfo() :
+            storageUtil.loadUserInfo() :
             selectDir();
         return initApp(userInfo);
     });
@@ -47,7 +47,7 @@ const initializeAppEpic = (action$, store) =>
         .ofType(INIT_APP)
         .switchMap(action => {
             const{ name, dir } = action.payload;
-            return loader.loadDir(dir);
+            return pdfUtil.loadDir(dir);
         })
         .map(data => receiveData(data));
 
@@ -60,7 +60,7 @@ const receivePaperInfoEpic = (action$, store) =>
     action$
         .ofType(RECEIVE_PAPER_INFO)
         .do(_ => store.dispatch(registeringPaper()))
-        .switchMap(action => loader.createPaperData(action.payload))
+        .switchMap(action => pdfUtil.createPaperData(action.payload))
         .map(data => {
             debug('data: ', data);
             return createPaperJson(data);

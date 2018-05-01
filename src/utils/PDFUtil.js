@@ -3,9 +3,9 @@ import fs from 'fs-extra';
 import paperInfoFormat from '../data/formatPerPaper.json';
 import 'babel-polyfill';
 
-const debug = Debug('Mr.Papper::PDFLoader');
+const debug = Debug('Mr.Papper::PDFUtil');
 
-class Loader {
+class PDFUtil {
     constructor() {
         this.dispatch = null;
         this.store = null;
@@ -76,5 +76,5 @@ class Loader {
     }
 }
 
-const loader = new Loader();
-export default loader;
+const pdfUtil = new PDFUtil();
+export default pdfUtil;

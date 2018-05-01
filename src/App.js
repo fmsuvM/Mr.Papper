@@ -10,12 +10,12 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
 import reducers from './reducers/index';
 import epicsMiddleware from './middleware/index';
-import loader from './utils/PDFLoader';
+import pdfUtil from './utils/PDFUtil';
 import { signinUser } from './actions/index';
-import storageLoader from './utils/storageLoader';
+import storageUtil from './utils/StorageUtil';
 
 import Home from './pages/Home';
-import List from './components/List';
+import PaperList from './components/PaperList';
 import DnD from './components/DnD';
 import Start from './components/Start';
 import AppManager from './components/AppManager';
@@ -33,9 +33,9 @@ window.addEventListener('DOMContentLoaded', () => {
             applyMiddleware(epicsMiddleware, routerMiddleware(history))
         )
     );
-    loader.init(store);
-    storageLoader.init(store);
-    const check = storageLoader.checkUserInfo();
+    pdfUtil.init(store);
+    storageUtil.init(store);
+    const check = storageUtil.checkUserInfo();
     store.dispatch(signinUser(check));
     ReactDOM.render(
         <Provider store={store}>
@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', () => {
                             <AppManager>
                                 <Switch>
                                     <Route component={Home} path="/" exact />
-                                    <Route component={List} path="/list" />
+                                    <Route component={PaperList} path="/list" />
                                     <Route component={DnD} path="/dnd" />
                                     <Route component={Start} path="/start" />
                                 </Switch>
