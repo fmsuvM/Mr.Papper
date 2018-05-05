@@ -8,7 +8,6 @@ import NavLayout from '../UIcomponents/NavLayout';
 import NavItem from '../UIcomponents/NavItem';
 
 const debug = Debug('Mr.Papper::HeaderMenu::');
-
 class Navigator extends React.Component {
     constructor(props) {
         super(props);
@@ -28,7 +27,6 @@ class Navigator extends React.Component {
                         home
                     </NavItem>
                 </NavLayout>
-                <hr />
             </nav>
         );
     }
