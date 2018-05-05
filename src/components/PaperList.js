@@ -66,75 +66,80 @@ class PaperList extends React.Component {
         const unknown = this.props.unknown;
         let paperList = null;
         if(paper.length === 0) {
-            paperList = <p>論文は登録されていません</p>;
+            paperList = <p> 論文は登録されていません </p>;
         } else {
             paperList = (
                 <div>
                     <ul>
+                        {' '}
                         {paper.map((_paper, key) => {
                             const{ title } = _paper;
-                            return <li key={key}>{title}</li>;
-                        })}
-                    </ul>
+                            return <li key={key}> {title} </li>;
+                        })}{' '}
+                    </ul>{' '}
                 </div>
             );
         }
         let unknownList = null;
         if(unknown.length === 0) {
-            unknownList = <p>未分類の論文はありません</p>;
+            unknownList = <p> 未分類の論文はありません </p>;
         } else {
             unknownList = (
                 <div>
                     <ul>
+                        {' '}
                         {unknown.map((_unknown, key) => {
                             return (
                                 <li key={key}>
+                                    {' '}
                                     {_unknown}{' '}
                                     <p
                                         onClick={this.registeringPaper(
                                             _unknown
                                         )}
                                     >
-                                        論文を登録するボタン
-                                    </p>
+                                        論文を登録するボタン{' '}
+                                    </p>{' '}
                                 </li>
                             );
-                        })}
-                    </ul>
+                        })}{' '}
+                    </ul>{' '}
                 </div>
             );
         }
         return (
             <div>
-                <p>論文リスト</p>
+                <p> 論文リスト </p>{' '}
                 {this.props.isLoading ? (
-                    <p>Now Loading...</p>
+                    <p> Now Loading... </p>
                 ) : (
                     <div>
                         <div>
+                            {' '}
                             {this.state.openPaper ? (
-                                <div>{paperList}</div>
-                            ) : null}
+                                <div> {paperList} </div>
+                            ) : null}{' '}
                             <Button
                                 onClick={this.openPaper(this.state.openPaper)}
                             >
-                                論文リストを開く
-                            </Button>
-                        </div>
+                                論文リストを開く{' '}
+                            </Button>{' '}
+                        </div>{' '}
                         <div>
+                            {' '}
                             {this.state.openUnknown ? (
-                                <div>{unknownList}</div>
-                            ) : null}
+                                <div> {unknownList} </div>
+                            ) : null}{' '}
                             <Button
                                 onClick={this.openUnknown(
                                     this.state.openUnknown
                                 )}
                             >
-                                未分類リストを開く
-                            </Button>
-                        </div>
+                                未分類リストを開く{' '}
+                            </Button>{' '}
+                        </div>{' '}
                     </div>
-                )}
+                )}{' '}
                 {this.props.isShowModal ? (
                     <ReactModal
                         isOpen={this.props.isShowModal}
