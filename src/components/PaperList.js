@@ -148,16 +148,16 @@ class PaperList extends React.Component {
                         contentLabel="delete confirmation"
                         ariaHideApp={false}
                     >
-                        <h2>論文登録開始</h2>
-                        <p> paper name is {this.props.targetPaper}</p>
+                        <h2> 論文登録開始 </h2>{' '}
+                        <p> paper name is {this.props.targetPaper} </p>{' '}
                         <PaperEditForm
                             onSubmit={values => this.submitPaperStatus(values)}
-                        />
-                        <Button onClick={this.closePaperModal}>close</Button>
+                        />{' '}
+                        <Button onClick={this.closePaperModal}> close </Button>{' '}
                     </ReactModal>
                 ) : (
                     <span />
-                )}
+                )}{' '}
             </div>
         );
     }
