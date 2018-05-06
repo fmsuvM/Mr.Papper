@@ -4,9 +4,8 @@ import Debug from 'debug';
 const debug = Debug('Mr.Papper::UI::AppLayout');
 
 const AppLayout = styled.div`
-    margin: 0;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 160px 1fr;
 `;
 
 export default AppLayout;
