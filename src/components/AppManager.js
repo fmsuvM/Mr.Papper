@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Debug from 'debug';
 
 import AppLayout from '../UIcomponents/AppLayout';
+import ChildrenPage from '../UIcomponents/ChildrenPage';
 import Navigator from './Navigator';
 
 const debug = Debug('Mr.Papper::AppManager::');
@@ -16,7 +17,7 @@ export default class AppManager extends React.Component {
         return (
             <AppLayout>
                 <Navigator />
-                {this.props.children}
+                <ChildrenPage>{this.props.children}</ChildrenPage>
             </AppLayout>
         );
     }
