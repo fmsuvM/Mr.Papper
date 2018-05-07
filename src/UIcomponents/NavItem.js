@@ -8,8 +8,10 @@ const debug = Debug('Mr.Papper::UI::Navigator');
 const NavItem = styled(NavLink)`
     color: white;
     display: block;
-    margin: 0.5em 0;
     font-family: Helvetica, Arial, sans-serif;
+    margin-top: 30px;
+    margin-right: 25px;
+    margin-left: 25px;
 
     text-decoration: none;
 

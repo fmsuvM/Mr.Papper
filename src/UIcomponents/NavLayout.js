@@ -13,7 +13,7 @@ const NavLayout = styled.div`
     top: 0;
     bottom: 0;
     right: auto;
-    width: 160px;
+    width: 85px;
     background: palevioletred;
     overflow-y: auto;
     ${props => {}};

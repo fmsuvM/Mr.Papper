@@ -5,7 +5,7 @@ const debug = Debug('Mr.Papper::UI::AppLayout');
 
 const AppLayout = styled.div`
     display: grid;
-    grid-template-columns: 160px 1fr;
+    grid-template-columns: 85px 1fr;
 `;
 
 export default AppLayout;
