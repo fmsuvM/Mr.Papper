@@ -3,11 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import Debug from 'debug';
+import fontawesome from '@fortawesome/fontawesome';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faFileAlt from '@fortawesome/fontawesome-free-solid/faFileAlt';
+import faBook from '@fortawesome/fontawesome-free-solid/faBook';
+import faUserCircle from '@fortawesome/fontawesome-free-solid/faUserCircle';
+import faDownload from '@fortawesome/fontawesome-free-solid/faDownload';
 
 import NavLayout from '../UIcomponents/NavLayout';
 import NavItem from '../UIcomponents/NavItem';
 
 const debug = Debug('Mr.Papper::HeaderMenu::');
+fontawesome.library.add(faFileAlt, faBook, faUserCircle, faDownload);
 class Navigator extends React.Component {
     constructor(props) {
         super(props);
@@ -18,13 +25,13 @@ class Navigator extends React.Component {
             <nav>
                 <NavLayout>
                     <NavItem to="/list" exact activeClassName="active">
-                        paper list
+                        <FontAwesomeIcon icon="book" size="2x" />
                     </NavItem>
                     <NavItem to="/dnd" activeClassName="active">
-                        import
+                        <FontAwesomeIcon icon="download" size="2x" />
                     </NavItem>
                     <NavItem to="/" exact activeClassName="active">
-                        home
+                        <FontAwesomeIcon icon="user-circle" size="2x" />
                     </NavItem>
                 </NavLayout>
             </nav>
