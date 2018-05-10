@@ -6,6 +6,7 @@ import Debug from 'debug';
 import { registPaper } from '../actions/index';
 import Button from '../UIcomponents/Button';
 import PaperEditModal from './PaperEditModal';
+import RegisteredPaper from './RegisteredPaper';
 
 const debug = Debug('Mr.Papper::List::');
 
@@ -36,23 +37,7 @@ class PaperList extends React.Component {
     }
 
     render() {
-        const paper = this.props.paper;
         const unknown = this.props.unknown;
-        let paperList = null;
-        if(paper.length === 0) {
-            paperList = <p> 論文は登録されていません </p>;
-        } else {
-            paperList = (
-                <div>
-                    <ul>
-                        {paper.map((_paper, key) => {
-                            const{ title } = _paper;
-                            return <li key={key}> {title} </li>;
-                        })}
-                    </ul>
-                </div>
-            );
-        }
         let unknownList = null;
         if(unknown.length === 0) {
             unknownList = <p> 未分類の論文はありません </p>;
@@ -86,14 +71,18 @@ class PaperList extends React.Component {
                 ) : (
                     <div>
                         <div>
-                            {this.state.openPaper ? (
-                                <div> {paperList} </div>
-                            ) : null}
                             <Button
                                 onClick={this.openPaper(this.state.openPaper)}
                             >
                                 論文リストを開く
                             </Button>
+                            {this.state.openPaper ? (
+                                <FadeComponent out={!this.state.openPaper}>
+                                    <RegisteredPaper paper={this.props.paper} />
+                                </FadeComponent>
+                            ) : (
+                                <span />
+                            )}
                         </div>
                         <div>
                             {this.state.openUnknown ? (
