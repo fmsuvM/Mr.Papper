@@ -5,7 +5,8 @@ const debug = Debug('Mr.Papper::UI::ChirdrenPages');
 
 const ChildrenPage = styled.div`
     display: block;
-    margin: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
 `;
 
 export default ChildrenPage;
