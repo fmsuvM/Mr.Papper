@@ -43,6 +43,9 @@ class PaperList extends React.Component {
                 <TitleText size="30" color="#222">
                     Paper List
                 </TitleText>
+                <hr />
+                <div>Search Window Space</div>
+                <hr />
                 {this.props.isLoading ? (
                     <p> Now Loading... </p>
                 ) : (
