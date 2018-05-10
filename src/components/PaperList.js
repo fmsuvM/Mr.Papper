@@ -7,6 +7,7 @@ import { registPaper } from '../actions/index';
 import Button from '../UIcomponents/Button';
 import PaperEditModal from './PaperEditModal';
 import RegisteredPaper from './RegisteredPaper';
+import UnknownPaper from './UnknownPaper';
 
 const debug = Debug('Mr.Papper::List::');
 
@@ -37,32 +38,6 @@ class PaperList extends React.Component {
     }
 
     render() {
-        const unknown = this.props.unknown;
-        let unknownList = null;
-        if(unknown.length === 0) {
-            unknownList = <p> 未分類の論文はありません </p>;
-        } else {
-            unknownList = (
-                <div>
-                    <ul>
-                        {unknown.map((_unknown, key) => {
-                            return (
-                                <li key={key}>
-                                    {_unknown}
-                                    <p
-                                        onClick={this.registeringPaper(
-                                            _unknown
-                                        )}
-                                    >
-                                        論文を登録するボタン
-                                    </p>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </div>
-            );
-        }
         return (
             <div>
                 <p> 論文リスト </p>
@@ -85,9 +60,6 @@ class PaperList extends React.Component {
                             )}
                         </div>
                         <div>
-                            {this.state.openUnknown ? (
-                                <div> {unknownList} </div>
-                            ) : null}
                             <Button
                                 onClick={this.openUnknown(
                                     this.state.openUnknown
@@ -95,6 +67,16 @@ class PaperList extends React.Component {
                             >
                                 未分類リストを開く
                             </Button>
+                            {this.state.openUnknown ? (
+                                <FadeComponent out={!this.props.unknown}>
+                                    <UnknownPaper
+                                        unknown={this.props.unknown}
+                                        onRegist={this.registeringPaper}
+                                    />
+                                </FadeComponent>
+                            ) : (
+                                <span />
+                            )}
                         </div>
                     </div>
                 )}
