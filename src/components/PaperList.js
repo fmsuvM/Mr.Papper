@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 import Debug from 'debug';
 
 import { registPaper } from '../actions/index';
+
 import PaperEditModal from './PaperEditModal';
 import RegisteredPaper from './RegisteredPaper';
 import UnknownPaper from './UnknownPaper';
 
 import Button from '../UIcomponents/Button';
 import TitleText from '../UIcomponents/TitleText';
+import FadeComponent from '../UIcomponents/FadeComponent';
+
 const debug = Debug('Mr.Papper::List::');
 
 class PaperList extends React.Component {
