@@ -9,6 +9,7 @@ import PaperEditModal from './PaperEditModal';
 import RegisteredPaper from './RegisteredPaper';
 import UnknownPaper from './UnknownPaper';
 
+import TitleText from '../UIcomponents/TitleText';
 const debug = Debug('Mr.Papper::List::');
 
 class PaperList extends React.Component {
@@ -40,7 +41,9 @@ class PaperList extends React.Component {
     render() {
         return (
             <div>
-                <p> 論文リスト </p>
+                <TitleText size="30" color="#222">
+                    Paper List
+                </TitleText>
                 {this.props.isLoading ? (
                     <p> Now Loading... </p>
                 ) : (
