@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import Debug from 'debug';
 
 import { registPaper } from '../actions/index';
-import Button from '../UIcomponents/Button';
 import PaperEditModal from './PaperEditModal';
 import RegisteredPaper from './RegisteredPaper';
 import UnknownPaper from './UnknownPaper';
 
+import Button from '../UIcomponents/Button';
 import TitleText from '../UIcomponents/TitleText';
 const debug = Debug('Mr.Papper::List::');
 
@@ -17,11 +17,7 @@ class PaperList extends React.Component {
         super(props);
         this.state = {
             openPaper: false,
-            openUnknown: false,
-            description: 'enter paper title',
-            status: {
-                title: null
-            }
+            openUnknown: false
         };
         this.openPaper = trigger => () => {
             this.setState({
