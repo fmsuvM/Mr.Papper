@@ -3,7 +3,7 @@ import Debug from 'debug';
 
 const debug = Debug('Mr.Papper::Footer::');
 
-export default class HeaderMenu extends React.Component {
+export default class Footer extends React.Component {
     constructor(props) {
         super(props);
     }

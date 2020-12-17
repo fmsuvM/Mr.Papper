@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Debug from 'debug';
 
-import HeaderMenu from './HeaderMenu';
-import Footer from './Footer';
+import AppLayout from '../UIcomponents/AppLayout';
+import ChildrenPage from '../UIcomponents/ChildrenPage';
+import Navigator from './Navigator';
 
 const debug = Debug('Mr.Papper::AppManager::');
 
@@ -14,11 +15,10 @@ export default class AppManager extends React.Component {
 
     render() {
         return (
-            <div>
-                <HeaderMenu />
-                {this.props.children}
-                <Footer />
-            </div>
+            <AppLayout>
+                <Navigator />
+                <ChildrenPage>{this.props.children}</ChildrenPage>
+            </AppLayout>
         );
     }
 }
